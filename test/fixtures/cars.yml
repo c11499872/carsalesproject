@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  seller_id: 1
+  make: MyString
+  model: MyString
+  price: 1
+  image: MyString
+  colour: MyString
+
+two:
+  seller_id: 1
+  make: MyString
+  model: MyString
+  price: 1
+  image: MyString
+  colour: MyString

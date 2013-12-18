@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Carsales</title>
+  <%= favicon_link_tag 'tyre.jpg' %>
+ <%= stylesheet_link_tag  "http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/themes/redmond/jquery-ui.css",  "application", :media => "all" %>
+  <%= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js", "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.1/jquery-ui.min.js", "application", "rails.validations" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<div id="banner">
+	<%= image_tag("tyre.jpg", :size => "150x75") %>
+		Brian McCabe's <%= @page_title || "Car Sales" %>
+
+</div>
+<div id = "navbar">
+<ul>
+<% if !signed_in? %>
+		<li><%= link_to "Sign In", signin_path %></li>		
+	<% else %>
+		<li>Signed in as <%= @current_seller.name %></li>
+		<li><%= link_to "Sign Out", signout_path %></li>
+<% end %>
+<li><%= link_to "Home", pages_home_path %></li>
+<li><%= link_to "Cars", cars_path %></li>
+<li><%= link_to "About us", pages_about_path%></li>
+<li><%= link_to "Subscribe", new_user_path%></li>
+
+</ul>
+</div>
+
+<%= yield %>
+
+
+
+
+</body>
+</html>

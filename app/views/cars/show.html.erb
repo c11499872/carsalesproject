@@ -1,0 +1,51 @@
+<p id="notice"><%= notice %></p>
+
+<% if @car.image? %>
+  <%= image_tag @car.image.url %>
+   <p>
+	<b>Seller:</b>
+	<%= @car.seller.name %>
+  </p>
+  <b>Price:</b>
+  <%= @car.price %>
+  <p>
+	<b>Make:</b>
+	<%= @car.make %>
+  </p>
+  <p>
+	<b>Model:</b>
+	<%= @car.model %>
+  </p>
+  <p>
+	<b>Date of registration:</b>
+	<%= @car.date_of_registration %>
+  </p>
+  <p>
+ <b>Description:</b>
+  <%= @car.colour %>
+  </p>
+  <p>
+	<b>location:</b>
+	<%= @car.location %>
+  </p>
+  
+  
+<%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{@car.latitude}%2C#{@car.longitude}" %>
+<p><p><p></p></p></p>
+<h3>cars within 60 miles</h3>
+<ul>
+<ul>
+<% @car.nearbys(60).each do |c| %>
+    <li><%= link_to c.make, c %> (<%= c.distance.round(2) %> miles)</li>
+  <% end %>
+</ul>
+
+
+</ul>
+  
+  
+<% end %>
+
+<p><p><p></p></p></p>
+<%= link_to 'Edit', edit_car_path(@car) %> |
+<%= link_to 'Back to cars', cars_path %>

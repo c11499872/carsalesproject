@@ -1,0 +1,29 @@
+class ApplicationController < ActionController::Base
+  protect_from_forgery
+  include ApplicationHelper
+  #before_filter :authorise,:only => [:new, :edit, :delete]
+  
+ def authorise
+        unless signed_in?
+		   store_location
+           redirect_to signin_path, :notice => "Please sign in to access this page."
+        end
+  end
+
+   def store_location
+       session[:return_to] = request.fullpath
+   end
+   
+   private
+
+ def current_cart
+ Cart.find(session[:cart_id])
+ rescue ActiveRecord::RecordNotFound
+ cart = Cart.create
+ session[:cart_id] = cart.id
+ cart
+ end
+
+ end
+
+

@@ -1,0 +1,46 @@
+<h1>Listing cars</h1>
+
+
+<center>
+<table>
+  <tr>
+    
+    <th><h3>Price</h3></th>
+    <th><h3>Image</h3></th>
+    <th><h3>Description</h3></th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+<%= form_tag("/search", :method => "get") do %>
+   <%= label_tag(:q, "") %>
+   <%= text_field_tag(:q, params[:q], :id => 'q_field') %>
+   <%= submit_tag("Search") %>
+<% end %> 
+
+<% @cars.each do |car| %>
+  <tr>
+  
+    <td><%= car.price %></td>
+	<td><%= image_tag(car.image, :size => "260x180") %></td>
+    <td><%= car.colour %></td>
+
+
+			
+	<td><%= button_to 'Add to Cart', line_items_path(car_id: car) %>
+    <td><%= link_to 'more details', car %></td>
+	
+    <td><%= link_to 'Edit', edit_car_path(car) %></td>
+    <td><%= link_to 'Destroy', car, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+<% if !signed_in? %>
+<%= link_to "New Car", signin_path %>
+<% else %>
+<%= link_to 'New Car', new_car_path %>
+<% end %>
+<br><br><br><br>
+</center>
